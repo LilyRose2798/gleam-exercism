@@ -10,6 +10,16 @@ download() {
     exercism download --track=$TRACK --exercise="$EXERCISE"
 }
 
+openfiles() {
+    if [ "$1" ]; then export EXERCISE="$1"; fi
+    if [ -z "$EXERCISE" ]; then echo '$EXERCISE not set and arg not provided'; return 1; fi
+    WS=`exercism workspace`
+    if [ ! -d "$WS/$TRACK/$EXERCISE" ]; then echo 'Exercise "'"$EXERCISE"'" not downloaded yet'; return 1; fi
+    code "$WS/$TRACK/$EXERCISE/src/"*".gleam"
+    code "$WS/$TRACK/$EXERCISE/test/"*".gleam"
+    code "$WS/$TRACK/$EXERCISE/README.md"
+}
+
 attempt() {
     if [ "$1" ]; then export EXERCISE="$1"; fi
     if [ -z "$EXERCISE" ]; then echo '$EXERCISE not set and arg not provided'; return 1; fi
