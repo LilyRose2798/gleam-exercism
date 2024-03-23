@@ -29,7 +29,14 @@ pub fn apply_rules(
     |> result.try(rule3)
     |> result.try(rule4)
   {
-    Ok(new_game) -> Game(..new_game, player: Black)
+    Ok(new_game) -> Game(..new_game, player: swap_player(game.player))
     Error(error) -> Game(..game, error: error)
+  }
+}
+
+fn swap_player(player: Player) -> Player {
+  case player {
+    White -> Black
+    Black -> White
   }
 }
