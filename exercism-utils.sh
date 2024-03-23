@@ -7,7 +7,10 @@ exercism-dl() {
     WS=`exercism workspace`
     EX_DIR="$WS/$TRACK/$EXERCISE"
     if [ -d "$EX_DIR" ]; then echo 'Exercise "'"$EXERCISE"'" already downloaded'; return 1; fi
-    exercism download --track=$TRACK --exercise="$EXERCISE" && code "$EX_DIR/src/"*".gleam" && code "$EX_DIR/test/"*".gleam" && code "$EX_DIR/README.md"
+    exercism download --track=$TRACK --exercise="$EXERCISE" && \
+    code "$EX_DIR/src/"*".gleam" && \
+    code "$EX_DIR/test/"*".gleam" && \
+    code "$EX_DIR/README.md"
 }
 
 exercism-test() {
