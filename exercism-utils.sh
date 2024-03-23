@@ -18,7 +18,7 @@ exercism-test() {
     if [ ! -d "$EX_DIR" ]; then echo 'Exercise "'"$EXERCISE"'" not downloaded yet'; return 1; fi
     CUR=$PWD
     cd "$EX_DIR"
-    gleam test
+    exercism test
     cd $CUR
 }
 
@@ -30,7 +30,7 @@ exercism-attempt() {
     if [ ! -d "$EX_DIR" ]; then echo 'Exercise "'"$EXERCISE"'" not downloaded yet'; return 1; fi
     CUR=$PWD
     cd "$EX_DIR"
-    gleam test && \
+    exercism test && \
     exercism submit && \
     git add -A "$EX_DIR" && \
     git commit -m "Solve $EXERCISE exercise" && \
