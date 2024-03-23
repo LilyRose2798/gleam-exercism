@@ -1,7 +1,6 @@
 import gleam/string
 import gleam/result
 import gleam/list
-import gleam/string_builder
 
 pub fn first_letter(name: String) -> String {
   name
@@ -25,24 +24,20 @@ pub fn initials(full_name: String) -> String {
 }
 
 pub fn pair(full_name1: String, full_name2: String) -> String {
-  string_builder.from_string("\n")
-  |> string_builder.append("     ******       ******\n")
-  |> string_builder.append("   **      **   **      **\n")
-  |> string_builder.append(" **         ** **         **\n")
-  |> string_builder.append("**            *            **\n")
-  |> string_builder.append("**                         **\n")
-  |> string_builder.append("**     ")
-  |> string_builder.append(initials(full_name1))
-  |> string_builder.append("  +  ")
-  |> string_builder.append(initials(full_name2))
-  |> string_builder.append("     **\n")
-  |> string_builder.append(" **                       **\n")
-  |> string_builder.append("   **                   **\n")
-  |> string_builder.append("     **               **\n")
-  |> string_builder.append("       **           **\n")
-  |> string_builder.append("         **       **\n")
-  |> string_builder.append("           **   **\n")
-  |> string_builder.append("             ***\n")
-  |> string_builder.append("              *\n")
-  |> string_builder.to_string
+  "
+     ******       ******
+   **      **   **      **
+ **         ** **         **
+**            *            **
+**                         **
+**     " <> initials(full_name1) <> "  +  " <> initials(full_name2) <> "     **
+ **                       **
+   **                   **
+     **               **
+       **           **
+         **       **
+           **   **
+             ***
+              *
+"
 }
