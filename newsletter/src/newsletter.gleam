@@ -31,10 +31,8 @@ pub fn send_newsletter(
   send_email: fn(String) -> Result(Nil, Nil),
 ) -> Result(Nil, Nil) {
   let _ = create_log_file(at: log_path)
-  use emails <- result.try(read_emails(from: emails_path))
-  list.each(emails, fn(email) {
-    use _ <- result.try(send_email(email))
-    log_sent_email(to: log_path, email: email)
-  })
-  Ok(Nil)
+  use emails <- result.map(read_emails(from: emails_path))
+  use email <- list.each(emails)
+  use _ <- result.try(send_email(email))
+  log_sent_email(to: log_path, email: email)
 }
